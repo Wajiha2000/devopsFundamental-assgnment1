@@ -1,3 +1,4 @@
+```groovy
 pipeline {
     agent any
 
@@ -26,6 +27,12 @@ pipeline {
             }
         }
 
+        stage('Security Scan') {
+            steps {
+                bat 'docker scout cves %IMAGE%:%BUILD_NUMBER%'
+            }
+        }
+
         stage('Push to Docker Hub') {
             steps {
                 withCredentials([usernamePassword(
@@ -49,3 +56,4 @@ pipeline {
         }
     }
 }
+```
