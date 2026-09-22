@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: assignment-1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: assignment-1
+  template:
+    metadata:
+      labels:
+        app: assignment-1
+    spec:
+      containers:
+        - name: assignment-1
+          image: assignment-1:v1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
