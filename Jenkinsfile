@@ -39,5 +39,13 @@ pipeline {
                 }
             }
         }
+
+        stage('Deploy to Kubernetes') {
+            steps {
+                bat 'minikube image load %IMAGE%:%BUILD_NUMBER%'
+                bat 'kubectl set image deployment/assignment-1 assignment-1=%IMAGE%:%BUILD_NUMBER%'
+                bat 'kubectl rollout status deployment/assignment-1'
+            }
+        }
     }
 }
