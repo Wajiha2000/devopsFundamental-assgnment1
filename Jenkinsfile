@@ -48,12 +48,11 @@ pipeline {
 
         stage('Deploy to Kubernetes') {
         steps {
-            bat 'whoami'
-            bat 'echo %USERPROFILE%'
-            bat 'minikube status'
             bat 'kubectl get nodes'
+            bat 'kubectl set image deployment/assignment-1 assignment-1=%IMAGE%:%BUILD_NUMBER%'
+            bat 'kubectl rollout status deployment/assignment-1'
         }
     }
-    
+
     }
 }
