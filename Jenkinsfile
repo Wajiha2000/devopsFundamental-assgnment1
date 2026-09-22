@@ -47,10 +47,13 @@ pipeline {
         }
 
         stage('Deploy to Kubernetes') {
-            steps {
-                bat 'minikube status'
-                bat 'kubectl get nodes'
-            }
+        steps {
+            bat 'whoami'
+            bat 'echo %USERPROFILE%'
+            bat 'minikube status'
+            bat 'kubectl get nodes'
         }
+    }
+    
     }
 }
